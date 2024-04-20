@@ -1,0 +1,17 @@
+@use '../abstracts/colors';
+@use '../abstracts/mixins';
+@use '../abstracts/variables';
+
+
+.homepage {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  overflow-x: hidden;    
+}
+
+@media screen and (max-width: 1100px) {
+  .homepage {
+    display: unset;
+  }
+}

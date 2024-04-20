@@ -1,0 +1,10 @@
+@mixin flex-horizontal {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@mixin flex-vertical {
+  display: flex;
+  justify-content: space-between;
+}

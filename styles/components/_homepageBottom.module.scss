@@ -1,0 +1,54 @@
+@use '../abstracts/colors';
+@use '../abstracts/mixins';
+@use '../abstracts/variables';
+
+.homepage_bottom {
+  display: grid;
+  grid-template-columns: 3.5fr 5fr 3.5fr;
+  height: 100%;;
+ 
+  .homepage_bottom_pictureRight, .homepage_bottom_pictureLeft {
+    display: flex;
+    justify-content: center;    
+    height: 100%;
+    img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .homepage_bottom_about {
+    flex-basis: 40%;
+    flex-shrink: 0;
+    padding: 2.5rem;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    h2 {
+      font-size: 0.92rem;
+      font-family: 'League Spartan Bold';
+      letter-spacing: 5px;
+    }
+
+    p {
+      font-family: 'League Spartan Medium';
+      color: colors.$dark_gray;
+      font-size: 0.9rem;
+      line-height: 1.3rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .homepage_bottom {
+    grid-template-columns: 1fr;
+
+    .homepage_bottom_about {
+      padding: 3rem;
+    }
+    
+  }
+}
