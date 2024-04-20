@@ -3,10 +3,27 @@ import logo from '../../images/logo.svg';
 import Image from 'next/image';
 import BurgerMenu from '../../images/icon-hamburger.svg';
 import CloseNav from '../../images/icon-close.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Navigation() {
   const [isToggled, setToggle] = useState(false);
+  const [isScrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleToggle = async (event) => {
     event.preventDefault();
@@ -16,8 +33,12 @@ function Navigation() {
 
   const navClass = isToggled ? `${style.nav_wrapper_toggle} ${style.nav_wrapper}` : `${style.nav_wrapper}`;
 
+  const logoClass = isToggled ? `${style.nav_logo_none}` : `${style.nav_logo}`;
+
+  const navScrolled = isScrolled ? `${style.scrolled}` : ``;
+
   return (
-    <nav className={navClass}>
+    <nav className={`${navClass} ${navScrolled}`}>
       <div className={style.nav_small}>
         <Image
           src={isToggled ? CloseNav: BurgerMenu }
@@ -27,7 +48,7 @@ function Navigation() {
         />
       </div>
 
-      <div className={style.nav_logo}>
+      <div className={logoClass}>
         <Image
           src={logo}
           alt="Shortly Logo"
